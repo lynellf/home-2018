@@ -1,12 +1,12 @@
 include ./partials/_header.pug
 
-form.ml-auto.mr-auto.mt-5.w-50
+form.ml-auto.mr-auto.mt-5.w-50(action="/auth/register" method="post")
 	.form-group
 		label(for="exampleInputEmail1") Email address
-		input#exampleInputEmail1.form-control(type="email" aria-describedby="emailHelp" placeholder="Enter email" required)
+		input#exampleInputEmail1.form-control(type="email" aria-describedby="emailHelp" name="email" placeholder="Enter email" required)
 	.form-group
 		label(for="password") Password
-		input#password.form-control(type="password" placeholder="Password")
+		input#password.form-control(type="password" placeholder="Password" name="password")
 	.form-group
 		label(for="confirmPassword") Confirm Password
 		input#confirmPassword.form-control(type="password" placeholder="Confirm Password")

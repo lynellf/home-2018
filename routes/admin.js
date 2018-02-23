@@ -1,24 +1,26 @@
 var express = require('express');
-var jwt = require('jsonwebtoken');
 var config = require('../config');
+var User = require('../model/user');
 var router = express.Router();
 
-router.get('/', function(req, res) {
-    console.log(req.headers);
-  var token = req.headers['x-access-token'];
-  if (!token)
-    return res.status(401).send({ auth: false, message: 'No token provided.' });
+// GET/ Control panel
+router.get('/', (req, res, next) => {
+    console.log(req.session);
+    if (! req.session.userId) {
+        var err = new Error('You are not authorized to view this page.');
+        err.status = 403;
+        res.render('login', { title: 'Login' });
+    }
+    res.render('index', { title: 'Dashboard', active: 'Home' });
+});
 
-  jwt.verify(token, config.secret, function(err, decoded) {
-    if (err)
-      return res
-        .status(500)
-        .send({ auth: false, message: 'Failed to authenticate token.' });
-
-    res
-      .status(200)
-      .render('admin', { title: 'Dashboard' });
-  });
+router.get('/newpost', function(req, res, next) {
+    if (!req.session.userId) {
+      var err = new Error('You are not authorized to view this page.');
+      err.status = 403;
+      res.render('login', { title: 'Login' });
+    }
+  res.render('newpost', { title: 'New Post', active: 'New Post' });
 });
 
 module.exports = router;

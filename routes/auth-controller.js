@@ -1,38 +1,51 @@
 var express = require('express');
 var router = express.Router();
-var bodyParser = require('body-parser');
 var User = require('../model/user');
-var jwt = require('jsonwebtoken');
-var bcrypt = require('bcrypt');
-var config = require('../config');
 
-router.use(bodyParser.urlencoded({ extended: false }));
-router.use(bodyParser.json());
+// User registration
+router.post('/register', (req, res, next) => {
+    const userData = req.body;
+    // Collect registration data and post to database
+    User.create(userData, function (err) {
+        if (err) {
+            console.log(err);
+            next(err);
+        } else {
+            res.render('login', { title: 'Login' });
+        }
+    });
+});
 
-router.post('/register', function(req, res) {
-  var hashedPassword = bcrypt.hashSync(req.body.password, 10);
+// POST / User login
+router.post('/login', (req, res, next) => {
+    var userData = req.body;
+    console.log(userData);
+    User.authenticate(userData, function(error, user, err) {
+        if (err) {
+            err = new Error('Wrong email or password');
+            err.status = 401;
+            return next(err);
+        } else {
+            console.log(user);
+            req.session.userId = user._id;
+            res.render('index', { title: 'Dashboard' });
+        }
+    });
+});
 
-  User.create(
-    {
-      email: req.body.email,
-      password: hashedPassword,
-    },
-    function(err, user) {
-        console.log(err);
-      if (err)
-        return res
-          .status(500)
-          .send('There was a problem registering the user.');
-
-      // create a token
-      var token = jwt.sign({ id: user._id }, config.secret, {
-        expiresIn: 86400, // expires in 24 hours
-      });
-
-      res.status(200).send({ auth: true, token: token });
-      res.render('admin', { title: 'Dashboard' });
+// GET / Logout
+router.get('/logout', function(req, res, next) {
+    console.log(req.session);
+    if (req.session) {
+    // delete session object
+        req.session.destroy(function(err) {
+            if(err) {
+                return next(err);
+            } else {
+                res.render('login', { title: 'Login' });
+            }
+        });
     }
-  );
 });
 
 module.exports = router;

@@ -5,25 +5,25 @@ html(lang="en")
 		meta(name="viewport", content="width=device-width, initial-scale=1.0")
 		meta(http-equiv="X-UA-Compatible", content="ie=edge")
 		link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous")
-		link(rel="stylesheet", href="javascripts/trumbowyg/dist/ui/trumbowyg.css")
+		link(rel="stylesheet", href="/javascripts/trumbowyg/dist/ui/trumbowyg.css")
+		link(rel="stylesheet", href="/drop-styles/dist/css/component-dropzone.css")
 		title #{title}
 	body
 		header
 			nav.navbar.navbar-expand-lg.navbar-dark.bg-dark
-				a.navbar-brand(href="#") Ezell CMS
+				a.navbar-brand(href="/") Ezell CMS
 				button.navbar-toggler(type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation")
 					span.navbar-toggler-icon
 				#navbarText.collapse.navbar-collapse
 					ul.navbar-nav.mr-auto
-						li.nav-item.active
-							a.nav-link(href="#")
-								| Home 
-								span.sr-only (current)
-						li.nav-item
+						li(class=(active === "Home" ? "nav-item active" : "nav-item") )
+							a.nav-link(href="/admin")
+								| Home
+						li(class=(active === "Posts" ? "nav-item active" : "nav-item") )
 							a.nav-link(href="#") Posts
-						li.nav-item
-							a.nav-link(href="#") New Post
-						li.nav-item
+						li(class=(active === "New Post" ? "nav-item active" : "nav-item") )
+							a.nav-link(href="/admin/newpost") New Post
+						li(class=(active === "Settings" ? "nav-item active" : "nav-item") )
 							a.nav-link(href="#") Settings
 
 

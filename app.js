@@ -38,6 +38,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/public')));
 
+// Use sessions for tracking all request objects
+app.use(session({
+    secret: 'Ezell Frazier dot com',
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+        mongooseConnection: store,
+    }),
+}));
+
 app.use('/', index);
 app.use('/auth', auth);
 app.use('/admin', admin);
@@ -47,6 +57,7 @@ app.use('/post', post);
 app.use('/skill', skill);
 app.use('/img', express.static('front-end/build/img'));
 app.use('/static', express.static('front-end/build/static'));
+app.use('/drop-styles', express.static('node_modules/bootstrap4c-dropzone'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

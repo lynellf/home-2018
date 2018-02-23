@@ -1,4 +1,6 @@
-include ./partials/_header.pug
+extends layout
+
+block content
 
 form.ml-auto.mr-auto.mt-5.w-50(action="/auth/register" method="post")
 	.form-group
@@ -11,5 +13,3 @@ form.ml-auto.mr-auto.mt-5.w-50(action="/auth/register" method="post")
 		label(for="confirmPassword") Confirm Password
 		input#confirmPassword.form-control(type="password" placeholder="Confirm Password")
 	button.btn.btn-primary(type="submit") Register
-
-include ./partials/_footer.pug

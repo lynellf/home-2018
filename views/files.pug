@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    .files
+        ul
+            each file in files
+                li= file
+    include ./partials/_dropzone.pug

@@ -15,7 +15,7 @@ var post = require('./routes/post-controller');
 var skill = require('./routes/skill-controller');
 var user = require('./routes/user-controller');
 var about = require('./routes/about-controller');
-var images = require('./routes/image-controller');
+var files = require('./routes/file-controller');
 var navigation = require('./routes/navigation-controller');
 
 var app = express();
@@ -55,7 +55,7 @@ app.use('/admin', admin);
 app.use('/about', about);
 app.use('/navigation', navigation);
 app.use('/post', post);
-app.use('/image', images);
+app.use('/files', files);
 app.use('/skill', skill);
 app.use('/img', express.static('front-end/build/img'));
 app.use('/static', express.static('front-end/build/static'));

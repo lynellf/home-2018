@@ -1,8 +1,13 @@
 extends layout
 
 block content
-    .files
-        ul
-            each file in files
-                li= file
+    table.table-responsive-sm.mr-auto.ml-auto.mt-3.mb-3#fileList.table-striped.w-50.table-hover
+        thead
+            tr.d-flex.justify-content-around
+                th(scope="col") File Name
+                th(scope="col") Options
+        tbody.files
+    nav(aria-label="Page navigation")
+        #pagination.text-center
+
     include ./partials/_dropzone.pug

@@ -1,6 +1,11 @@
 $('#textEditor').trumbowyg({
   btns: ['strong', 'em', '|', 'insertImage'],
-  autogrow: true,
+  autogrow: false,
+});
+
+$('#preview').trumbowyg({
+  btns: ['strong', 'em', '|', 'insertImage'],
+  autogrow: false,
 });
 
 Dropzone.autoDiscover = false;

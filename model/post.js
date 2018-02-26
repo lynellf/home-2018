@@ -14,6 +14,10 @@ var collection = require('mongoose'),
       type: Array,
       required: false,
     },
+    type: {
+      type: String,
+      required: true
+    },
     tags: {
       type: Array,
       required: false,
@@ -35,7 +39,7 @@ var collection = require('mongoose'),
       required: false,
     },
     draft: {
-      type: Boolean,
+      type: String,
       required: true,
     },
   });

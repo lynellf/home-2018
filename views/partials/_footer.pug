@@ -4,6 +4,11 @@ script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
 script(src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
 script.
 	window.jQuery || document.write('<script src="js/vendor/jquery-3.2.1.min.js"><\\/script>')
-script(src="/javascripts/trumbowyg/dist/trumbowyg.min.js")
-script(src="/javascripts/dropzone/dropzone.js")
-script(src="/javascripts/config.js")
+if active === "New Post" || "File Manager"
+	script(src="/javascripts/trumbowyg/dist/trumbowyg.min.js")
+	script(src="/javascripts/dropzone/dropzone.js")
+	script(src="/javascripts/config.js")
+if active === "File Manager"
+	script(src="/javascripts/file-manager.js")
+if active === "Projects" || active === "Posts"
+	script(src="/javascripts/post-list.js")

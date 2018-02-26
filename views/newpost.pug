@@ -1,12 +1,27 @@
 extends layout
 
 block content
-    form.editor.w-75.mt-3.ml-auto.mr-auto(action="/post", method="post")
-        h3 New Post
-            input#postTitle.form-control.mt-3(type="text" aria-describedby="textTitle" placeholder="Post Title")
-        #textEditor
-        input#postTags.form-control.mt-3(type="text" aria-describedby="textTags" placeholder="Tags")
-        input#postTags.form-control.mt-3(type="text" aria-describedby="coverImage" placeholder="Cover Image")
-        input#gitHub.form-control.mt-3.mb-3(type="text" aria-describedby="gitHub" placeholder="GitHub Url")
-        input#projec.form-control.mt-3.mb-3(type="text" aria-describedby="project" placeholder="Project Url")
-        button.btn.btn-primary(type="submit") Submit
+    form.editor.mt-3.ml-auto.mr-auto(action="/post/new", method="post")
+        .container
+            .row
+                .col-lg
+                    h3 New Post
+                        input#postTitle.form-control.mt-3(type="text" aria-describedby="textTitle" placeholder="Post Title" name="title")
+                    #textEditor
+                    h3 Preview
+                    #preview
+                .col-sm
+                    h3 Post Details
+                        select.custom-select(name="type")
+                            option(selected='') Post Type
+                            option(value='Project') Project
+                            option(value='Blog Post') Blog Post
+                        input#postTags.form-control.mt-3(type="text" aria-describedby="textTags" placeholder="Tags" name="tags")
+                        input#postTags.form-control.mt-3(type="text" aria-describedby="coverImage" placeholder="Cover Image" name="images")
+                        input#gitHub.form-control.mt-3.mb-3(type="text" aria-describedby="gitHub" placeholder="GitHub Url" name="github")
+                        input#projec.form-control.mt-3.mb-3(type="text" aria-describedby="project" placeholder="Project Url" name="projectUrl")
+                        label.checkbox-inline
+                            input(checked='', data-toggle='toggle', type='checkbox' name="draft")
+                            |  Draft
+                    button.btn.btn-primary(type="submit") Submit
+                

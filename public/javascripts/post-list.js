@@ -189,7 +189,7 @@ function editPost() {
             if (event.target.textContent === 'Edit') {
                 var row = event.target.parentNode.parentNode,
                   index = nodes.indexOf(row);
-                window.location.href = '/posts/edit:' + rawPosts[index]['_id'];
+                window.location.href = '/admin/edit:' + rawPosts[index]['_id'];
             }
         })
     }

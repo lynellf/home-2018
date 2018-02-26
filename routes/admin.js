@@ -15,7 +15,7 @@ router.get('/', (req, res, next) => {
     err.status = 403;
     res.render('login', { title: 'Login' });
   }
-  res.render('index', { title: 'Dashboard', active: 'Home' });
+  res.render('index', { title: 'Dashboard', active: 'Dashboard' });
 });
 
 router.get('/newpost', function(req, res, next) {
@@ -25,6 +25,15 @@ router.get('/newpost', function(req, res, next) {
     res.render('login', { title: 'Login' });
   }
   res.render('newpost', { title: 'New Post', active: 'New Post' });
+});
+
+router.get('/edit::id', function(req, res, next) {
+  if (!req.session.userId) {
+    var err = new Error('You are not authorized to view this page.');
+    err.status = 403;
+    res.render('login', { title: 'Login' });
+  }
+  res.render('editpost', { title: 'Edit Post', active: 'Edit Post', id: req.params.id, postAction: '/post/update:' + req.params.id });
 });
 
 router.get('/files', function(req, res, next) {

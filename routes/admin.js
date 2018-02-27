@@ -75,4 +75,17 @@ router.get('/posts', function(req, res, next) {
   });
 });
 
+router.get('/skills', function(req, res, next) {
+    if (!req.session.userId) {
+      var err = new Error('You are not authorized to view this page.');
+      err.status = 403;
+      res.render('login', { title: 'Login', active: 'Login' });
+    }
+  
+    res.render('skills', {
+      title: 'Skills',
+      active: 'Skills',
+    });
+  });
+
 module.exports = router;

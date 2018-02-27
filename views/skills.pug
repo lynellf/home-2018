@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    .container
+        .row
+            .col-lg
+                table.table-responsive-xs.mr-auto.ml-auto.mt-3.mb-3#postList.table-striped.w-50.table-hover
+                    thead
+                        tr.d-flex.justify-content-around
+                            th(scope="col") Skill Title
+                            th(scope="col") Options
+                    tbody.skills#skills
+                nav(aria-label="Page navigation")
+                    #pagination.text-center
+            .col-sm
+                form.mt-3.ml-auto.mr-auto(action="/skills/new", method="post" id="postSkill")
+                     h3 Add Skill
+                        input#skillTitle.form-control.mt-3(type="text" aria-describedby="skillTitle" placeholder="Skill Title" name="skillTitle")
+                        input#skillExp.form-control.mt-3(type="text" aria-describedby="skillExp" placeholder="Skill Exp" name="skillExp")
+                        button.btn.btn-primary.mt-3.ml-auto.mr-auto(type="submit", id="submitSkill") Submit
+        

@@ -32,9 +32,9 @@ router.post('/new', function(req, res, next) {
   );
 });
 
-// GET / Delete Project
-router.get('/delete/:id', function(req, res, next) {
-  Project.findOneAndRemove({ _id: req.params.id }, function (err) {
+// POST / Delete Skill
+router.post('/delete::id', function(req, res, next) {
+  Skill.findOneAndRemove({ _id: req.params.id }, function (err) {
       if (!err) {
           res.send(true);
       } else {
@@ -42,5 +42,28 @@ router.get('/delete/:id', function(req, res, next) {
       }
   });
 });
+
+// POST / Rename Skill
+router.post('/rename::id', function(req, res, next) {
+  Skill.findOneAndUpdate({ _id: req.params.id }, { name: req.body.name }, function (err) {
+      if (!err) {
+          res.send(true);
+      } else {
+          res.send(err);
+      }
+  });
+});
+
+// POST / Rate Skill
+router.post('/rate::id', function(req, res, next) {
+  Skill.findOneAndUpdate({ _id: req.params.id }, { rating: req.body.rating }, function (err) {
+      if (!err) {
+          res.send(true);
+      } else {
+          res.send(err);
+      }
+  });
+});
+
 
 module.exports = router;

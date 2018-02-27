@@ -1,13 +1,14 @@
 extends layout
 
 block content
-    .container
+    .container-fluid
         .row
-            .col-lg
-                table.table-responsive-xs.mr-auto.ml-auto.mt-3.mb-3#postList.table-striped.w-50.table-hover
+            .col-sm
+                table.table-responsive-xs.mr-auto.ml-auto.mt-3.mb-3#postList.table-striped.table-hover.w-75
                     thead
                         tr.d-flex.justify-content-around
-                            th(scope="col") Skill Title
+                            th(scope="col") Skill
+                            th(scope="col") Rating
                             th(scope="col") Options
                     tbody.skills#skills
                 nav(aria-label="Page navigation")

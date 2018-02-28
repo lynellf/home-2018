@@ -56,6 +56,7 @@ router.post('/rename::id', function(req, res, next) {
 
 // POST / Change URL
 router.post('/url::id', function(req, res, next) {
+  console.log(req.body);
   Navigation.findOneAndUpdate({ _id: req.params.id }, { url: req.body.url }, function (err) {
       if (!err) {
           res.send(true);

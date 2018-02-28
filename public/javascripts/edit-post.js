@@ -1,4 +1,4 @@
-function getPost(id) {
+function getPost() {
   var postId = document.getElementById('postId').textContent;
   $.ajax({
     type: 'GET',

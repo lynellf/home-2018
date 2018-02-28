@@ -3,14 +3,27 @@ $('#aboutEditor').trumbowyg({
   autogrow: false,
 });
 
+function getPost() {
+  var postId = document.getElementById('postId').textContent;
+  $.ajax({
+    type: 'GET',
+    url: '/about',
+  }).done(function(data) {
+    setPost(data);
+    postAbout();
+  });
+}
+
 function getNav() {
-  var navList = document.querySelector('.nav');
+  var navList = document.querySelector('.navLinks');
   $.ajax({
     type: 'GET',
     url: '/nav/all',
   }).done(function(data) {
-    navList.textContent = '';
-    renderNav(grouper(data), navList, data);
+    if (navList.textContent != '') {
+      navList.textContent = '';
+    }
+    renderNavs(grouper(data), navList, data);
     classFilter(0);
     pagination(grouper(data));
     selectPage();
@@ -54,6 +67,7 @@ function renderNavs(array, node, rawArray) {
       row.appendChild(nameCell);
       row.appendChild(urlCell);
       row.appendChild(optionCell);
+      nameCell.appendChild(urlLink);
       optionCell.appendChild(renameBtn);
       optionCell.appendChild(urlBtn);
       optionCell.appendChild(deleteBtn);
@@ -126,19 +140,19 @@ function selectPage() {
 }
 
 function deleteNav() {
-  var skills = document.querySelectorAll('.nav__row');
+  var links = document.querySelectorAll('.nav__row');
 
-  for (var i = 0; i < skills.length; i++) {
-    skills[i].addEventListener('click', function(event) {
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function(event) {
       if (event.target.textContent === 'Delete') {
         var id = event.target.getAttribute('key');
 
         $.ajax({
           type: 'POST',
-          url: '/skill/delete:' + id,
+          url: '/nav/delete:' + id,
         }).done(function(response) {
           if (response === true) {
-            getSkills();
+            getNav();
           }
         });
       }
@@ -161,7 +175,7 @@ function postNav() {
     }).done(function(response) {
       if (response === true) {
         document.getElementById('navTitle').value = '';
-        document.getElementById('navExp').value = '';
+        document.getElementById('navUrl').value = '';
       }
     });
     event.preventDefault();
@@ -203,7 +217,7 @@ function changeUrl() {
 
         $.ajax({
           type: 'POST',
-          url: '/skill/url:' + id,
+          url: '/nav/url:' + id,
           data: { url: url },
         }).done(function(response) {
           if (response === true) {
@@ -214,3 +228,31 @@ function changeUrl() {
     });
   }
 }
+
+function setPost(data) {
+  var body = $('#aboutEditor');
+  body.trumbowyg('html', data[0].post);
+}
+
+function postAbout() {
+  var post = $('#aboutEditor'),
+    postId = document.getElementById('postId').textContent,
+    submit = document.getElementById('submitAbout');
+
+  submit.addEventListener('click', function(event) {
+    event.preventDefault();
+    $.ajax({
+      type: 'POST',
+      url: '/about/update',
+      data: { post: post.trumbowyg('html') },
+    }).done(function(response) {
+      if (response === true) {
+        getPost();
+      }
+    });
+  });
+}
+
+getPost();
+
+getNav();

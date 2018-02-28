@@ -187,7 +187,7 @@ export default class ProjectContainer extends Component {
 
           <article className={this.state.classNames[index]}>
             <ProjectArticle
-              post={post.content}
+              post={post.body}
               images={post.images}
               skills={post.tags}
               title={post.title}

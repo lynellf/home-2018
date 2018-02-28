@@ -10,18 +10,32 @@ export default class Index extends Component {
   constructor() {
     super();
     this.state = {
+      about: [],
+      links: [],
       entries: [],
       isLoading: true,
     };
   }
   componentWillMount() {
-    $.ajax({ type: 'GET', url: '/admin/post' })
-      .done(post => {
-        this.setState({ entries: post, isLoading: false });
-      })
-      .fail(function(error) {
-        console.log('An error occurred:', error);
+    $.ajax({
+      type: 'GET',
+      url: 'nav/all',
+    }).done(links => {
+      this.setState({ links });
+      $.ajax({
+        type: 'GET',
+        url: '/about',
+      }).done(about => {
+        this.setState({ about });
+        $.ajax({ type: 'GET', url: '/post/projects' })
+          .done(post => {
+            this.setState({ entries: post, isLoading: false });
+          })
+          .fail(function(error) {
+            console.log('An error occurred:', error);
+          });
       });
+    });
   }
 
   render() {
@@ -35,9 +49,9 @@ export default class Index extends Component {
       return (
         <div className="main-site">
           <Navbar />
-          <Jumbotron posts={this.state.entries} />
+          <Jumbotron posts={this.state.entries} links={this.state.links} />
           <Body posts={this.state.entries} />
-          <Footer />
+          <Footer about={this.state.about}/>
         </div>
       );
     }

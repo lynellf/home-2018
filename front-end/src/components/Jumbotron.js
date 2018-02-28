@@ -5,6 +5,7 @@ export default class Jumbotron extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      links: [],
       imageURL: [],
       classNames: [],
     };
@@ -35,6 +36,7 @@ export default class Jumbotron extends Component {
     });
     this.setState({
       imageURL: imageArray,
+      links: this.props.links
     });
   }
 
@@ -51,6 +53,12 @@ export default class Jumbotron extends Component {
           <Parallax bgImage={image} strength={300} blur={1} />
         </div>
       ));
+    const urlArray = this.state.links,
+      navLinks = urlArray.map((link, index) => 
+      <li key={index} className="greeting__item">
+        <a href={link.url} className="button">{link.name}</a>
+      </li>
+    );
 
     return (
       <div className="jumbotron">
@@ -59,26 +67,7 @@ export default class Jumbotron extends Component {
           <h1 className="greeting__sub">Front-End Web Developer</h1>
           <div className="greeting__navigation">
           <ul className="greeting__list">
-            <li className="greeting__item">
-              <a href="#projects" className="button">
-                Projects
-              </a>
-            </li>
-            <li className="greeting__item">
-              <a href="#about" className="button">
-                About
-              </a>
-            </li>
-            <li className="greeting__item">
-              <a href="#contact" className="button">
-                Contact
-              </a>
-            </li>
-            <li className="greeting__item">
-              <a href="https://ezellfrazier.com/projects/ezell_resume.pdf" className="button">
-                Resume
-              </a>
-            </li>
+            {navLinks}
           </ul>
         </div>
         </div>

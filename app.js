@@ -53,7 +53,7 @@ app.use('/', index);
 app.use('/auth', auth);
 app.use('/admin', admin);
 app.use('/about', about);
-app.use('/navigation', navigation);
+app.use('/nav', navigation);
 app.use('/post', post);
 app.use('/files', files);
 app.use('/skill', skill);

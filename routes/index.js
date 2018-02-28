@@ -5,7 +5,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.sendFile('/front-end/build/index.html', { root: './'});
+  res.sendFile('./front-end/build/index.html', { root: './'});
 });
 
 router.get('/register', function(req, res, next) {

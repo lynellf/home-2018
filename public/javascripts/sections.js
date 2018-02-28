@@ -231,7 +231,9 @@ function changeUrl() {
 
 function setPost(data) {
   var body = $('#aboutEditor');
-  body.trumbowyg('html', data[0].post);
+  if (data.length != 0) {
+    body.trumbowyg('html', data[0].post);
+  }
 }
 
 function postAbout() {

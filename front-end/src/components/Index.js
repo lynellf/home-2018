@@ -48,7 +48,7 @@ export default class Index extends Component {
     } else {
       return (
         <div className="main-site">
-          <Navbar />
+          <Navbar links={this.state.links}/>
           <Jumbotron posts={this.state.entries} links={this.state.links} />
           <Body posts={this.state.entries} />
           <Footer about={this.state.about}/>

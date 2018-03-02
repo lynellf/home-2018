@@ -1,11 +1,21 @@
+import React from 'react';
+
 // Reset classes on project elements
-export const defaultClass = (array, defaultName) => {
+export const defaultClass = (array, classGroup, defaultName) => {
     const newArray = [];
-    array.forEach(item => {
-      newArray.push(defaultName);
+    array.forEach((item, index) => {
+      newArray.push((array[index][`${classGroup}`] = defaultName));
     });
 
     return newArray;
+  },
+  createImgObjFromPost = (post) => {
+    return post.images.map((image, index) => {
+    return { image: image, key: index, alt: `${post.title} ${index}`, className: '' };
+    });
+  },
+  createTagObjFromPost = (post) => {
+
   },
   createPost = (data, postType) => {
     const newArray = [];
@@ -18,24 +28,24 @@ export const defaultClass = (array, defaultName) => {
         git: item.gitHub,
         url: item.projectUrl,
         post: item.body,
-        images: item.images,
+        images: createImgObjFromPost(item),
         tags: item.tags,
         titleClass: `${postType}__title`,
         controlsClass: `${postType}__controls`,
-        articleClass: `${postType}__article`
+        articleClass: `${postType}__article`,
       };
       newArray.push(post);
     });
     return newArray;
   },
   toggleElement = (array, index, classGroup, defaultName, next, prev) => {
-    if(next === true) {
-      array[index +1][`${classGroup}`] = `${defaultName}--active`;
+    if (next === true) {
+      array[index + 1][`${classGroup}`] = `${defaultName}--active`;
     } else {
       array[index][`${classGroup}`] = `${defaultName}--active`;
     }
-    if(prev === true) {
-      array[index -1][`${classGroup}`] = `${defaultName}--active`;
+    if (prev === true) {
+      array[index - 1][`${classGroup}`] = `${defaultName}--active`;
     } else {
       array[index][`${classGroup}`] = `${defaultName}--active`;
     }
@@ -83,4 +93,22 @@ export const defaultClass = (array, defaultName) => {
       });
     }
     return classNames;
-  };
+  },
+
+// Iterate virtual dom elements
+
+// Images
+createImg = array => {
+  return array.map((image, index) => (
+    <img src={image} key={index} className={image.className} alt={image.alt} />
+  ));
+},
+
+// List Items
+createLi = array => {
+    return array.map((item, index) => (
+        <li className={item.className} key={index}>
+            {item.name}
+        </li>
+    ));
+};

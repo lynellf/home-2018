@@ -21,11 +21,10 @@ export default class ProjectContainer extends Component {
   }
 
   showProject(index, id) {
-      console.log(this.state.posts);
     this.setState({
-      classNames: toggleElement(this.state.posts, index, 'articleClass', 'project__article'),
-      titleClassNames: toggleElement(this.state.posts, index, 'titleClass', 'project__title-container'),
-      controlsClassNames: toggleElement(this.state.posts, index, 'controlsClass', 'project__controls')
+      posts: toggleElement(this.state.posts, index, 'articleClass', 'project__article'),
+      posts: toggleElement(this.state.posts, index, 'titleClass', 'project__title-container'),
+      posts: toggleElement(this.state.posts, index, 'controlsClass', 'project__controls')
     });
 
     setTimeout(() => {
@@ -39,14 +38,13 @@ export default class ProjectContainer extends Component {
 
   closeProject() {
     this.setState({
-      classNames: defaultClass(this.state.classNames, 'project__article'),
-      titleClassNames: defaultClass(this.state.titleClassNames, 'project__title-container'),
-      controlsClassNames: defaultClass(this.state.controlsClassNames, 'project__controls'),
+      posts: defaultClass(this.state.posts, 'articleClass', 'project__article'),
+      posts: defaultClass(this.state.posts, 'titleClass', 'project__title-container'),
+      posts: defaultClass(this.state.posts, 'controlsClass', 'project__controls')
     });
   }
 
   nextProject(index, nextId) {
-
     this.setState({
       classNames: toggleElement(this.state.classNames, index, 'project__article', true),
       titleClassNames: toggleElement(this.state.titleClassNames, index, 'project__title-container', true),
@@ -63,7 +61,6 @@ export default class ProjectContainer extends Component {
   }
 
   previousProject(index, prevId) {
-
     this.setState({
       classNames: toggleElement(this.state.classNames, index, 'project__article', false, true),
       titleClassNames: toggleElement(this.state.titleClassNames, index, 'project__title-container', false, true),
@@ -111,14 +108,14 @@ export default class ProjectContainer extends Component {
         .filter(post => post.tags.length > 0)
         .map((post, index) => (
           <div className="project" key={post._id} id={post._id}>
-            <div className={this.state.titleClassNames[index]}>
+            <div className={this.state.posts[index].titleClass}>
               <h2
                 className="project__title"
                 onClick={event => this.showProject(index, post._id)}
               >
                 {post.title}
               </h2>
-              <div className={this.state.controlsClassNames[index]}>
+              <div className={this.state.posts[index].controlsClass}>
                 {index !== 0 && (
                   <span
                     className="controls__back"
@@ -167,7 +164,7 @@ export default class ProjectContainer extends Component {
             </div>
 
             <article className={this.state.posts[index].articleClass}>
-              <ProjectArticle
+              {/* <ProjectArticle
                 post={this.state.posts[index].post}
                 images={this.state.posts[index].images}
                 skills={this.state.posts[index].tags}
@@ -176,7 +173,7 @@ export default class ProjectContainer extends Component {
                 update={this.state.posts[index].update}
                 git={this.state.posts[index].gitHub}
                 url={this.state.posts[index].url}
-              />
+              /> */}
             </article>
           </div>
         ));

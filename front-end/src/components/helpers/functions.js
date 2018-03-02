@@ -7,9 +7,38 @@ export const defaultClass = (array, defaultName) => {
 
     return newArray;
   },
-  toggleElement = (array, index, defaultName) => {
-    array = defaultClass(array, defaultName);
-    array[index] = `${defaultName}--active`;
+  createPost = (data, postType) => {
+    const newArray = [];
+    data.forEach(item => {
+      const post = {
+        id: item._id,
+        title: item.title,
+        date: item.date,
+        update: item.lastUpdated,
+        git: item.gitHub,
+        url: item.projectUrl,
+        post: item.body,
+        images: item.images,
+        tags: item.tags,
+        titleClass: `${postType}__title`,
+        controlsClass: `${postType}__controls`,
+        articleClass: `${postType}__article`
+      };
+      newArray.push(post);
+    });
+    return newArray;
+  },
+  toggleElement = (array, index, classGroup, defaultName, next, prev) => {
+    if(next === true) {
+      array[index +1][`${classGroup}`] = `${defaultName}--active`;
+    } else {
+      array[index][`${classGroup}`] = `${defaultName}--active`;
+    }
+    if(prev === true) {
+      array[index -1][`${classGroup}`] = `${defaultName}--active`;
+    } else {
+      array[index][`${classGroup}`] = `${defaultName}--active`;
+    }
     return array;
   },
   grouper = array => {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProjectArticle from './ProjectArticle';
-import { resetClassNames, defaultClass, grouper } from './helpers/functions';
+import { resetClassNames, defaultClass, grouper, toggleElement, createPost } from './helpers/functions';
 
 export default class ProjectContainer extends Component {
   constructor(props) {
@@ -12,6 +12,7 @@ export default class ProjectContainer extends Component {
       postClassNames: [],
       titleClassNames: [],
       controlsClassNames: [],
+      posts: []
     };
     this.showProject = this.showProject.bind(this);
     this.closeProject = this.closeProject.bind(this);
@@ -20,18 +21,11 @@ export default class ProjectContainer extends Component {
   }
 
   showProject(index, id) {
-    // const classList = defaultClass(this.state.classNames, 'project__article'),
-    //   controlsList = defaultClass(this.state.controlsClassNames, 'project__controls'),
-    //   titleList = defaultClass(this.state.titleClassNames, 'project__title-container');
-
-    // classList[index] = 'project__article--active';
-    // controlsList[index] = 'project__controls--active';
-    // titleList[index] = 'project__title-container--active';
-
+      console.log(this.state.posts);
     this.setState({
-      classNames: classList,
-      titleClassNames: titleList,
-      controlsClassNames: controlsList,
+      classNames: toggleElement(this.state.posts, index, 'articleClass', 'project__article'),
+      titleClassNames: toggleElement(this.state.posts, index, 'titleClass', 'project__title-container'),
+      controlsClassNames: toggleElement(this.state.posts, index, 'controlsClass', 'project__controls')
     });
 
     setTimeout(() => {
@@ -45,23 +39,18 @@ export default class ProjectContainer extends Component {
 
   closeProject() {
     this.setState({
-      classNames: defaultClass(this.state.ClassNames, 'project__article'),
+      classNames: defaultClass(this.state.classNames, 'project__article'),
       titleClassNames: defaultClass(this.state.titleClassNames, 'project__title-container'),
       controlsClassNames: defaultClass(this.state.controlsClassNames, 'project__controls'),
     });
   }
 
   nextProject(index, nextId) {
-    let { classList, controlsList, titleList } = resetClassNames();
-
-    classList[index + 1] = 'project__article--active';
-    controlsList[index + 1] = 'project__controls--active';
-    titleList[index + 1] = 'project__title-container--active';
 
     this.setState({
-      classNames: classList,
-      titleClassNames: titleList,
-      controlsClassNames: controlsList,
+      classNames: toggleElement(this.state.classNames, index, 'project__article', true),
+      titleClassNames: toggleElement(this.state.titleClassNames, index, 'project__title-container', true),
+      controlsClassNames: toggleElement(this.state.controlsClassNames, 'project__controls', true)
     });
 
     setTimeout(() => {
@@ -74,16 +63,11 @@ export default class ProjectContainer extends Component {
   }
 
   previousProject(index, prevId) {
-    let { classList, controlsList, titleList } = resetClassNames();
-
-    classList[index - 1] = 'project__article--active';
-    controlsList[index - 1] = 'project__controls--active';
-    titleList[index - 1] = 'project__title-container--active';
 
     this.setState({
-      classNames: classList,
-      titleClassNames: titleList,
-      controlsClassNames: controlsList,
+      classNames: toggleElement(this.state.classNames, index, 'project__article', false, true),
+      titleClassNames: toggleElement(this.state.titleClassNames, index, 'project__title-container', false, true),
+      controlsClassNames: toggleElement(this.state.controlsClassNames, 'project__controls', false, true)
     });
 
     setTimeout(() => {
@@ -115,6 +99,9 @@ export default class ProjectContainer extends Component {
 
   componentWillMount() {
     this.setClasses();
+    this.setState({
+      posts: createPost(this.state.entries, 'project')
+    })
   }
 
   render() {
@@ -179,16 +166,16 @@ export default class ProjectContainer extends Component {
               </div>
             </div>
 
-            <article className={this.state.classNames[index]}>
+            <article className={this.state.posts[index].articleClass}>
               <ProjectArticle
-                post={post.body}
-                images={post.images}
-                skills={post.tags}
-                title={post.title}
-                date={post.date}
-                update={post.lastUpdated}
-                git={post.gitHub}
-                url={post.projectUrl}
+                post={this.state.posts[index].post}
+                images={this.state.posts[index].images}
+                skills={this.state.posts[index].tags}
+                title={this.state.posts[index].title}
+                date={this.state.posts[index].date}
+                update={this.state.posts[index].update}
+                git={this.state.posts[index].gitHub}
+                url={this.state.posts[index].url}
               />
             </article>
           </div>

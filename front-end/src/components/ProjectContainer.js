@@ -164,7 +164,7 @@ export default class ProjectContainer extends Component {
             </div>
 
             <article className={this.state.posts[index].articleClass}>
-              {/* <ProjectArticle
+              <ProjectArticle
                 post={this.state.posts[index].post}
                 images={this.state.posts[index].images}
                 skills={this.state.posts[index].tags}
@@ -173,7 +173,7 @@ export default class ProjectContainer extends Component {
                 update={this.state.posts[index].update}
                 git={this.state.posts[index].gitHub}
                 url={this.state.posts[index].url}
-              /> */}
+              />
             </article>
           </div>
         ));

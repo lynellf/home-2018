@@ -2,12 +2,10 @@ import React from 'react';
 
 // Reset classes on project elements
 export const defaultClass = (array, classGroup, defaultName) => {
-    const newArray = [];
     array.forEach((item, index) => {
-      newArray.push((array[index][`${classGroup}`] = defaultName));
+      array[index][`${classGroup}`] = defaultName
     });
-
-    return newArray;
+    return array;
   },
   createImgObjFromPost = (post) => {
     return post.images.map((image, index) => {
@@ -15,7 +13,9 @@ export const defaultClass = (array, classGroup, defaultName) => {
     });
   },
   createTagObjFromPost = (post) => {
-
+    return post.tags.map((tag, index) => {
+      return { tag: tag, key: index, className: '' };
+    });
   },
   createPost = (data, postType) => {
     const newArray = [];
@@ -29,7 +29,7 @@ export const defaultClass = (array, classGroup, defaultName) => {
         url: item.projectUrl,
         post: item.body,
         images: createImgObjFromPost(item),
-        tags: item.tags,
+        tags: createTagObjFromPost(item),
         titleClass: `${postType}__title`,
         controlsClass: `${postType}__controls`,
         articleClass: `${postType}__article`,
@@ -95,12 +95,20 @@ export const defaultClass = (array, classGroup, defaultName) => {
     return classNames;
   },
 
+  filterPosts = (groupedPosts) => {
+    if (groupedPosts.length > 1) {
+      groupedPosts.forEach(post => {
+        post.className
+      })
+    }
+  }
+
 // Iterate virtual dom elements
 
 // Images
 createImg = array => {
   return array.map((image, index) => (
-    <img src={image} key={index} className={image.className} alt={image.alt} />
+    <img src={image.image} key={index} className={image.className} alt={image.alt} />
   ));
 },
 
@@ -108,7 +116,7 @@ createImg = array => {
 createLi = array => {
     return array.map((item, index) => (
         <li className={item.className} key={index}>
-            {item.name}
+            {item.tag}
         </li>
     ));
 };

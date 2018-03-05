@@ -1,0 +1,62 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+    background-image: $houston;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+p,
+span,
+li,
+td {
+    font-family: 'Hind', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label,
+th {
+    font-family: 'Titillium Web', sans-serif;
+}
+
+.button {
+    font-family: 'Hind', sans-serif;
+    text-align: center;
+    margin: 0 4px;
+    padding: 6px;
+    background: black;
+    text-decoration: none;
+    color: white;
+    border: thin solid white;
+    transition: all 0.2s ease-in-out;
+    min-height: 40px;
+    min-width: 40px;
+    max-height: 25px;
+    &:hover {
+        background: white;
+        color: black;
+    }
+    @include mq('xl') {
+        font-size: 20px;
+    }
+}
+
+.loading {
+    padding-top: 35vh;
+    display: block;
+    margin: auto;
+    width: 50%;
+}
+
+.react-sweet-progress-symbol {
+    font-family: 'Hind',
+    sans-serif;
+    color: black !important;
+}

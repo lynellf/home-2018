@@ -1,0 +1,201 @@
+// Navbar component
+.navbar {
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    transition: all 0.4s ease-in-out;
+    @include m('scrolled') {
+        position: fixed;
+        z-index: 100;
+        width: 100%;
+        background: black;
+        opacity: 0.3;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+    @include e('nav') {
+        @include mq('sm') {
+            display: flex;
+            flex-direction: column;
+            height: 16px;
+            transition: all 0.4s ease-in-out;
+        }
+        @include m('toggled') {
+            @include mq('sm') {
+                display: flex;
+                flex-direction: column;
+                height: 190px;
+                transition: all 0.4s ease-in-out;
+            }
+            display: flex;
+            justify-content: space-between;
+            transition: all 0.4s ease-in-out;
+        }
+        display: flex;
+        justify-content: space-between;
+        transition: all 0.4s ease-in-out;
+    }
+    @include e('name') {
+        font-family: 'Hind', sans-serif;
+        @include mq('sm') {
+            margin: auto;
+        }
+        @include mq('med') {
+            margin: 16px 0;
+            padding-left: 30px;
+        }
+        color: white;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.4s ease-in-out;
+        @include m('scrolled') {
+            font-family: 'Hind', sans-serif;
+            @include mq('sm') {
+                margin: auto;
+                visibility: hidden;
+                opacity: 0;
+            }
+            @include mq('med') {
+                margin: 16px 0;
+                padding-left: 30px;
+                visibility: visible;
+                opacity: 1;
+            }
+            @include m('toggled') {
+                font-family: 'Hind', sans-serif;
+                @include mq('sm') {
+                    margin: auto;
+                    visibility: visible;
+                    opacity: 1;
+                    color: white;
+                    transition: all 0.4s ease-in-out;
+                }
+                @include mq('med') {
+                    margin: 16px 0;
+                    padding-left: 30px;
+                    visibility: visible;
+                    opacity: 1;
+                }
+                color: white;
+                transition: all 0.4s ease-in-out;
+            }
+            color: white;
+            transition: all 0.4s ease-in-out;
+        }
+    }
+    @include e('list') {
+        font-family: 'Hind', sans-serif;
+        display: flex;
+        @include mq('sm') {
+            flex-direction: column;
+            margin: auto;
+            padding: 0;
+        }
+        @include mq('med') {
+            padding-right: 30px;
+        }
+    }
+    @include e('item') {
+        font-family: 'Hind', sans-serif;
+        @include mq('sm') {
+            margin: 8px 0;
+        }
+        @include mq('med') {
+            margin: 0 20px;
+        }
+        visibility: hidden;
+        opacity: 0;
+        color: white;
+        list-style: none;
+        @include m('scrolled') {
+            font-family: 'Hind', sans-serif;
+            @include mq('sm') {
+                margin: 8px 0;
+                text-align: center;
+                visibility: hidden;
+                opacity: 0;
+            }
+            @include mq('med') {
+                margin: 0 20px;
+                visibility: visible;
+                opacity: 1;
+            }
+            color: white;
+            list-style: none;
+            a {
+                padding: 6px;
+                text-decoration: none;
+                color: white;
+                transition: all 0.1s ease-in-out;
+                &:hover {
+                    background: $shamrock;
+                    opacity: 0.9;
+                    border-radius: 2px;
+                    box-shadow: 0 0 0 1px white;
+                    transition: all 0.1s ease-in-out;
+                }
+            }
+            @include m('toggled') {
+                font-family: 'Hind', sans-serif;
+                @include mq('sm') {
+                    margin: 8px 0;
+                    list-style: none;
+                    text-align: center;
+                    visibility: visible;
+                    opacity: 1;
+                    color: white;
+                    transition: all 0.4s ease-in-out;
+                }
+                @include mq('med') {
+                    margin: 0 20px;
+                    visibility: visible;
+                    opacity: 1;
+                }
+                color: white;
+                list-style: none;
+                a {
+                    padding: 6px;
+                    text-decoration: none;
+                    color: white;
+                    transition: all 0.1s ease-in-out;
+                    &:hover {
+                        background: $shamrock;
+                        opacity: 0.9;
+                        border-radius: 2px;
+                        box-shadow: 0 0 0 1px white;
+                        transition: all 0.1s ease-in-out;
+                    }
+                }
+            }
+        }
+    }
+    @include e('hamburger') {
+        display: none;
+        visibility: hidden;
+        @include mq('sm') {
+            display: block;
+            visibility: hidden;
+            margin: auto;
+            padding-top: 16px;
+            fill: white;
+            enable-background: new 0 0 32 32;
+        }
+        @include m('scrolled') {
+            display: none;
+            visibility: hidden;
+            @include mq('sm') {
+                display: block;
+                visibility: visible;
+                margin: auto;
+                padding-top: 16px;
+                fill: white;
+                enable-background: new 0 0 32 32;
+            }
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}

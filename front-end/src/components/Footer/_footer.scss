@@ -1,0 +1,42 @@
+// Footer
+.footer {
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column-reverse;
+    @include e('container') {
+        background: black;
+        border-radius: 4px;
+        opacity: 0.8;
+        @include mq('sm') {
+            margin-top: 50px;
+        }
+        @include mq('med') {
+            margin-top: 50px;
+        }
+        @include mq('lg') {
+            padding: 8px;
+            width: 35%;
+        }
+    }
+    @include e('title') {
+        color: white;
+        font-family: 'Hind', sans-serif;
+    }
+    @include e('social') {
+        fill: white;
+        width: auto;
+        height: 24px;
+        margin: 0 4px;
+        transition: all 0.2s ease-in-out;
+        &:hover {
+            fill: $shamrock;
+        }
+    }
+    @include e('summary') {
+        color: white;
+    }
+    @include e('legal') {
+        color: white;
+    }
+}

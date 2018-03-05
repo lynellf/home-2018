@@ -1,0 +1,35 @@
+// ==========================================================================
+// BEM Selectors
+// ==========================================================================
+@mixin e($element) {
+    &__#{$element} {
+        @content;
+    }
+}
+
+@mixin m($modifier) {
+    &--#{$modifier} {
+        @content;
+    }
+}
+
+// ==========================================================================
+// Media Queries
+// ==========================================================================
+@mixin mq($break) {
+    $value: map-get($breaks, $break);
+    $med: map-get($breaks, 'med');
+    @if $value==null {
+        @error "`#{$break}` is not a valid breakpoint name";
+    }
+    @else if $value < $med {
+        @media (max-width: $value) {
+            @content;
+        }
+    }
+    @else {
+        @media (min-width: $value) {
+            @content;
+        }
+    }
+}

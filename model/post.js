@@ -40,7 +40,7 @@ var collection = require('mongoose'),
     },
     draft: {
       type: String,
-      required: true,
+      required: false,
     },
   });
 

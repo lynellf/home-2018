@@ -1,0 +1,21 @@
+.skills {
+    overflow: hidden;
+    border-top: 0.5px solid rgb(117, 115, 115);
+    border-bottom: 0.5px solid rgb(117, 115, 115);
+    padding-bottom: pem(16);
+    background: $seashell;
+    transition: all 0.2s ease-in-out;
+    padding-left: pem(16);
+    @include e('list') {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    // @include e('skill-container') {
+    //     padding-left: pem(16);
+    // }
+
+    @include e('name') {
+        text-align: center;
+    }
+}

@@ -12,9 +12,16 @@
     "connect-mongo": "^2.0.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "del": "^3.0.0",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
     "fs": "0.0.1-security",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-uglify": "^3.0.0",
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.6",
     "morgan": "~1.9.0",
@@ -23,5 +30,8 @@
     "pug": "^2.0.0-rc.4",
     "serve-favicon": "~2.4.5",
     "trumbowyg": "^2.9.4"
+  },
+  "devDependencies": {
+    "gulp-util": "^3.0.8"
   }
 }

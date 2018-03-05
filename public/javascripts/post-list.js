@@ -12,7 +12,7 @@ function getPosts() {
             rawPosts = data;
             renderPosts(grouper(data), postList);
             classFilter(0);
-            pagination(data);
+            pagination(grouper(data));
             selectPage();
             deletePost();
             editPost();
@@ -25,7 +25,7 @@ function getPosts() {
           rawPosts = data;
           renderPosts(grouper(data), postList);
           classFilter(0);
-          pagination(data);
+          pagination(grouper(data));
           selectPage();
           deletePost();
           editPost();
@@ -73,7 +73,10 @@ function grouper(array) {
     }
   }
   // Whatever remains in the group array shall get pushed into the groups array and return the array
-  groups.push(group);
+  if (group.length === 10) {
+    groups.push(group);
+    group = [];
+  }
   return groups;
 }
 

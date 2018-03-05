@@ -1,0 +1,16 @@
+//Imported background
+@import './houston';
+//=====================================================
+//Breakpoints
+//=====================================================
+$breaks: ( 'sm': 599px, 'med': 600px, 'lg': 708px, 'xl': 1000px, );
+// Color Variables
+$shamrock: #2dbcad;
+$seashell: #f1f1f1;
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Hind|Titillium+Web:700i');
+
+// Convet pixels to EM
+@function pem($pixels) {
+    @return($pixels/16 *1em);
+}

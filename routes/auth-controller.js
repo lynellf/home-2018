@@ -3,18 +3,18 @@ var router = express.Router();
 var User = require('../model/user');
 
 // User registration
-router.post('/register', (req, res, next) => {
-    const userData = req.body;
-    // Collect registration data and post to database
-    User.create(userData, function (err) {
-        if (err) {
-            console.log(err);
-            next(err);
-        } else {
-            res.render('login', { title: 'Login' });
-        }
-    });
-});
+// router.post('/register', (req, res, next) => {
+//     const userData = req.body;
+//     // Collect registration data and post to database
+//     User.create(userData, function (err) {
+//         if (err) {
+//             console.log(err);
+//             next(err);
+//         } else {
+//             res.render('login', { title: 'Login' });
+//         }
+//     });
+// });
 
 // POST / User login
 router.post('/login', (req, res, next) => {

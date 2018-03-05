@@ -87,6 +87,7 @@ export const defaultClass = (array, classGroup, defaultName) => {
     }, 50);
   },
   filterPosts = (array, index, defaultName) => {
+    console.log(array);
     if (array.length > 1) {
       array.forEach(group => {
         group.forEach(post => {

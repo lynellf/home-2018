@@ -20,6 +20,7 @@ var navigation = require('./routes/navigation-controller');
 
 var app = express();
 var store = database.connection;
+var port = 3000;
 
 
 // Database listening
@@ -79,4 +80,6 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+// Port Listening
+app.listen( port, () => console.log(`The API is listening on port ${port}`));
 module.exports = app;

@@ -71,7 +71,7 @@ export default class Posts extends Component {
 
   // Click > icon and list item will collapse, open next list item, and scroll to top
   nextPost(array, index, nextId) {
-    // this.closePost();
+    this.closePost();
     let posts = this.state.posts,
       newPost = toggleElement(
         array,

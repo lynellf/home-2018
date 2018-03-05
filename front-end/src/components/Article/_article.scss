@@ -1,143 +1,147 @@
 .article {
-    @include e('container') {
-        margin-top: 32px;
-        display: flex;
-        padding: 0 16px;
-        margin-bottom: pem(25);
-        @include mq('sm') {
-            flex-direction: column;
-            min-height: 300px;
-        }
+  @include e('container') {
+    margin-top: 32px;
+    display: flex;
+    padding: 0 16px;
+    margin-bottom: pem(25);
+    @include mq('sm') {
+      flex-direction: column;
+      min-height: 300px;
+    }
+    @include m('active') {
         @include mq('med') {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             grid-gap: pem(16);
         }
     }
-    @include e('title') {
-        text-align: center;
-        @include mq('xl') {
-            font-size: 25px;
-        }
+  }
+  @include e('title') {
+    text-align: center;
+    @include mq('xl') {
+      font-size: 25px;
     }
-    @include e('post') {
-        margin-left: 8px;
-        img {
-            height: 100%;
-            width: 100%;
-            transform: scale(0.5 0.5);
-        }
-        pre {
-            background: black;
-            color: white;
-            overflow: scroll;
-            border-radius: 3px;
-        }
-        @include mq('sm') {
-            height: 50%;
-        }
+  }
+  @include e('post') {
+    margin-left: 8px;
+    img {
+      height: 100%;
+      width: 100%;
+      transform: scale(0.5 0.5);
     }
-    @include e('details') {
-        display: flex;
-        flex-direction: column;
-        @include mq('sm') {
-            height: 50%;
-        }
+    pre {
+      background: black;
+      color: white;
+      overflow: scroll;
+      border-radius: 3px;
     }
-    @include e('extra') {
-        align-self: center;
-        display: flex;
-        flex-direction: column;
-        @include mq('sm') {
-            margin-bottom: 16px;
-        }
+    @include mq('sm') {
+      height: 50%;
     }
-    @include e('list') {
-        list-style: none;
-        display: flex;
-        justify-content: space-around;
-        padding: 0;
-        max-width: 500px;
-        flex-wrap: wrap;
+  }
+  @include e('details') {
+    display: flex;
+    flex-direction: column;
+    @include mq('sm') {
+      height: 50%;
     }
-    @include e('item') {
-        padding: 5px;
-        min-width: 10px;
-        font-weight: 700;
-        color: white;
-        background: $shamrock;
-        border-radius: 6px;
-        margin-bottom: 16px;
-        @include mq('xl') {
-            font-size: 20px;
-        }
+  }
+  @include e('extra') {
+    align-self: center;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    @include mq('sm') {
+      margin-bottom: 16px;
     }
+  }
+  @include e('list') {
+    margin: auto;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    width: 50%;
+    flex-wrap: wrap;
+    @include mq('lg') {
+        width: 35%;
+    }
+  }
+  @include e('item') {
+    padding: 5px;
+    min-width: 10px;
+    font-weight: 700;
+    color: white;
+    background: $shamrock;
+    border-radius: 6px;
+    margin-bottom: 16px;
+  }
+  @include e('more') {
+      margin: auto;
+  }
 }
 
 .slideshow {
-    display: flex;
-    align-self: center;
+  display: flex;
+  align-self: center;
+  @include mq('sm') {
+    flex-direction: column;
+  }
+  @include mq('med') {
+    flex-direction: column;
+    margin: 16px;
+  }
+  @include mq('lg') {
+    flex-direction: row;
+    margin: 16px;
+  }
+  @include mq('xl') {
+    flex-direction: row;
+    margin: 16px;
+  }
+  @include e('image') {
+    @include m('active') {
+      visibility: visible;
+      opacity: 1;
+      width: auto;
+      transition: all 0.4s ease-in-out;
+      @include mq('sm') {
+        height: auto;
+        width: 100%;
+      }
+      @include mq('med') {
+        max-height: 300px;
+      }
+      @include mq('xl') {
+        max-height: 400px;
+      }
+    }
+    @include m('inactive') {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      max-height: 400px;
+      width: auto;
+      transition: all 0.4s ease-in-out;
+      @include mq('sm') {
+        height: auto;
+        width: 100%;
+      }
+      @include mq('med') {
+        max-height: 300px;
+      }
+      @include mq('xl') {
+        max-height: 400px;
+      }
+    }
+  }
+  @include e('item') {
     @include mq('sm') {
-        // height: 350px;
-        flex-direction: column;
+      display: none;
     }
     @include mq('med') {
-        flex-direction: column;
-        // width: auto;
-        // height: 50%;
+      height: 100%;
+      width: auto;
     }
-    @include mq('lg') {
-        // width: 50%;
-        flex-direction: row;
-        margin: 16px;
-        height: auto;
-    }
-    @include mq('xl') {
-        // width: 65%;
-        flex-direction: row;
-        margin: 16px;
-        // height: 30%;
-    }
-    @include e('reel') {
-        position: relative;
-        @include mq('lg') {
-            width: 100%;
-            height: auto;
-        }
-    }
-    @include e('image') {
-        @include m('active') {
-            visibility: visible;
-            opacity: 1;
-            position: absolute;
-            // height: 100%;
-            // width: auto;
-            transition: all .4s ease-in-out;
-            @include mq('sm') {
-                height: auto;
-                width: 100%;
-            }
-        }
-        @include m('inactive') {
-            visibility: hidden;
-            opacity: 0;
-            position: absolute;
-            // height: 100%;
-            // width: auto;
-            transition: all .4s ease-in-out;
-            @include mq('sm') {
-                height: auto;
-                width: 100%;
-            }
-        }
-    }
-    @include e('item') {
-        @include mq('sm') {
-            display: none;
-        }
-        @include mq('med') {
-            height: 100%;
-            width: auto;
-        }
-    }
+  }
 }

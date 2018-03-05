@@ -1,37 +1,34 @@
-var rawPosts = [];
-
 function getPosts() {
-    var postList = document.querySelector('.posts');
-
-    if(postList.id === 'projects') {
-        $.ajax({
-            type: 'GET',
-            url: '/post/projects'
-        })
-        .done(function(data) {
-            rawPosts = data;
-            renderPosts(grouper(data), postList);
-            classFilter(0);
-            pagination(grouper(data));
-            selectPage();
-            deletePost();
-            editPost();
-        })
-    } else {
-        $.ajax({
-          type: 'GET',
-          url: '/post/journal',
-        }).done(function(data) {
-          rawPosts = data;
-          renderPosts(grouper(data), postList);
-          classFilter(0);
-          pagination(grouper(data));
-          selectPage();
-          deletePost();
-          editPost();
-        });
-    }
+  if (document.querySelector('.list').id === 'projects') {
+    $.ajax({
+      type: 'GET',
+      url: '/post/projects',
+    }).done(function(data) {
+      // rawPosts = data;
+      renderPosts(grouper(data), document.querySelector('.posts'));
+      classFilter(0);
+      pagination(grouper(data));
+      selectPage();
+      deletePost(data);
+      editPost(data);
+    });
+  } else {
+    $.ajax({
+      type: 'GET',
+      url: '/post/journal',
+    }).done(function(data) {
+      // rawPosts = data;
+      renderPosts(grouper(data), document.querySelector('.posts'));
+      classFilter(0);
+      pagination(grouper(data));
+      selectPage();
+      deletePost(data);
+      editPost(data);
+    });
+  }
 }
+
+
 
 function renderPosts(array, node) {
   for (let a = 0; a < array.length; a++) {
@@ -63,9 +60,9 @@ function renderPosts(array, node) {
 function grouper(array) {
   var groups = [],
     group = [];
-  // We want to push 10 items into the group array
-  for (var l = 0; l < array.length; l++) {
-    group.push(array[l]);
+  // We want to push 10 posts into the group array
+  for (var i = 0; i < array.length; i++) {
+    group.push(array[i]);
     // When the group array length is equal to ten, we want to push it to the groups array and start over
     if (group.length === 10) {
       groups.push(group);
@@ -73,12 +70,11 @@ function grouper(array) {
     }
   }
   // Whatever remains in the group array shall get pushed into the groups array and return the array
-  if (group.length === 10) {
+  if (group.length > 0) {
     groups.push(group);
-    group = [];
   }
   return groups;
-}
+};
 
 function classFilter(index) {
   var array = grouper(document.querySelectorAll('.posts__row'));
@@ -127,11 +123,11 @@ function selectPage() {
   }
 }
 
-function deletePost() {
+function deletePost(data) {
   var posts = document.querySelectorAll('.posts__row'),
     nav = document.querySelector('#pagination'),
     pagination = document.createElement('ul'),
-    newPosts = rawPosts,
+    // data = rawPosts,
     fileList = document.querySelector('.posts'),
     nodes = Array.prototype.slice.call(
       document.querySelector('.posts').children
@@ -151,16 +147,16 @@ function deletePost() {
         // Server action
         $.ajax({
           type: 'POST',
-          url: '/posts/delete:' + rawPosts[index]['_id'],
+          url: '/posts/delete:' + data[index]['_id'],
         }).done(function() {
-          newPosts.splice(index, 1);
+          data.splice(index, 1);
           fileList.textContent = '';
-          renderPosts(grouper(newPosts), fileList);
+          renderPosts(grouper(data), fileList);
           nav.textContent = '';
           nav.appendChild(pagination);
           classFilter(0);
-          if (grouper(newPosts).length > 1) {
-            for (var i = 0; i < grouper(newPosts).length; i++) {
+          if (grouper(data).length > 1) {
+            for (var i = 0; i < grouper(data).length; i++) {
               var item = document.createElement('li'),
                 link = document.createElement('a');
               item.className = 'page-item';
@@ -180,22 +176,22 @@ function deletePost() {
   }
 }
 
-function editPost() {
-    var posts = document.querySelectorAll('.posts__row'),
-        nodes = Array.prototype.slice.call(
-            document.querySelector('.posts').children
-        ),
-        index;
+function editPost(data) {
+  var posts = document.querySelectorAll('.posts__row'),
+    nodes = Array.prototype.slice.call(
+      document.querySelector('.posts').children
+    ),
+    index;
 
-    for(var i = 0; i < posts.length; i++) {
-        posts[i].addEventListener('click', function(event) {
-            if (event.target.textContent === 'Edit') {
-                var row = event.target.parentNode.parentNode,
-                  index = nodes.indexOf(row);
-                window.location.href = '/admin/edit:' + rawPosts[index]['_id'];
-            }
-        })
-    }
+  for (var i = 0; i < posts.length; i++) {
+    posts[i].addEventListener('click', function(event) {
+      if (event.target.textContent === 'Edit') {
+        var row = event.target.parentNode.parentNode,
+          index = nodes.indexOf(row);
+        window.location.href = '/admin/edit:' + data[index]['_id'];
+      }
+    });
+  }
 }
 
 getPosts();

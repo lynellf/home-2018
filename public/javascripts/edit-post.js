@@ -13,7 +13,7 @@ function setPost(data) {
     body = $('#textEditor'),
     preview = $('#preview'),
     type = document.getElementById('type'),
-    tags = document.getElementById('postType'),
+    tags = document.getElementById('postTags'),
     images = document.getElementById('postImages'),
     gitHub = document.getElementById('gitHub'),
     projectUrl = document.getElementById('projectUrl'),
@@ -24,6 +24,7 @@ function setPost(data) {
     title.value = post.title,
     body.trumbowyg('html', post.body);
     preview.trumbowyg('html', post.preview);
+    tags.value = post.tags;
     type.value = post.type;
     images.value = post.images;
     gitHub.value = post.gitHub;

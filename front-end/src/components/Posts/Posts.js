@@ -158,7 +158,11 @@ export default class Posts extends Component {
                   <span
                     className="controls__back"
                     onClick={event =>
-                      this.previousPost(array, index, array[index - 1].id)
+                      this.previousPost(
+                        array,
+                        index,
+                        array[index - 1].id
+                      )
                     }
                   >
                     <svg
@@ -209,7 +213,7 @@ export default class Posts extends Component {
                 title={post.title}
                 date={post.date}
                 update={post.update}
-                git={post.gitHub}
+                git={post.git}
                 url={post.url}
               />
             </article>

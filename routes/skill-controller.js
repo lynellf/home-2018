@@ -4,11 +4,11 @@ var Skill = require('../model/skill');
 
 // GET / All Skills
 router.get('/all', function(req, res, next) {
-  Skill.find({}, function(err, data) {
-    if(!err) {
-      res.send(data)
+  Skill.find({}, null, { sort: { rating: -1 } }, function(err, data) {
+    if (!err) {
+      res.send(data);
     } else {
-      res.send(err)
+      res.send(err);
     }
   });
 });

@@ -57,7 +57,18 @@ router.post('/update::id', function(req, res, next) {
 
 // GET / All Projects
 router.get('/projects', function(req, res, next) {
-  Post.find({ type: 'Project' }, function(err, data) {
+  Post.find({ type: 'Project' }, null, {sort: { date: -1 }}, function(err, data) {
+    if(!err) {
+      res.send(data)
+    } else {
+      res.send(err)
+    }
+  });
+});
+
+// GET / All Projects (Non Draft)
+router.get('/projects/live', function(req, res, next) {
+  Post.find({ type: 'Project', draft: null }, null, {sort: { date: -1 }}, function(err, data) {
     if(!err) {
       res.send(data)
     } else {
@@ -68,11 +79,28 @@ router.get('/projects', function(req, res, next) {
 
 // GET / All Blog Posts
 router.get('/journal', function(req, res, next) {
-  Post.find({ type: 'Blog Post' }, function(err, data) {
-    if(!err) {
-      res.send(data)
+  Post.find({ type: 'Blog Post' }, null, { sort: { date: -1 } }, function(
+    err,
+    data
+  ) {
+    if (!err) {
+      res.send(data);
     } else {
-      res.send(err)
+      res.send(err);
+    }
+  });
+});
+
+// GET / All Blog Posts (Non Draft)
+router.get('/journal/live', function(req, res, next) {
+  Post.find({ type: 'Blog Post', draft: null }, null, { sort: { date: -1 } }, function(
+    err,
+    data
+  ) {
+    if (!err) {
+      res.send(data);
+    } else {
+      res.send(err);
     }
   });
 });
@@ -83,6 +111,18 @@ router.get('/::id', function(req, res, next) {
     if(!err) {
       console.log(data);
       res.send(data);
+    } else {
+      res.send(err);
+    }
+  });
+});
+
+// POST / Delete Single Post
+router.post('/delete::id', function(req, res, next) {
+  Post.findOneAndRemove({ _id: req.params.id }, function(err, data) {
+    if(!err) {
+      console.log(data);
+      res.send(true);
     } else {
       res.send(err);
     }

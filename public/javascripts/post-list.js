@@ -147,7 +147,7 @@ function deletePost(data) {
         // Server action
         $.ajax({
           type: 'POST',
-          url: '/posts/delete:' + data[index]['_id'],
+          url: '/post/delete:' + data[index]['_id'],
         }).done(function() {
           data.splice(index, 1);
           fileList.textContent = '';
@@ -167,9 +167,7 @@ function deletePost(data) {
               item.appendChild(link);
             }
           }
-          deletePost();
-          editPost();
-          selectPage();
+          getPosts();
         });
       }
     });

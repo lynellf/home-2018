@@ -63,8 +63,10 @@ export default class Jumbotron extends Component {
     return (
       <div className="jumbotron">
         <div className="greeting">
-          <h1 className="greeting__name">Ezell Frazier</h1>
-          <h1 className="greeting__sub">Front-End Web Developer</h1>
+          <div className="greeting__title">
+            <h1 className="greeting__name">Ezell Frazier</h1>
+            <h1 className="greeting__sub">Front-End Web Developer</h1>
+          </div>
           <div className="greeting__navigation">
           <ul className="greeting__list">
             {navLinks}

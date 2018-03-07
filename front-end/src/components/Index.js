@@ -28,20 +28,18 @@ export default class Index extends Component {
           .done(about => {
             this.setState({ about });
             // GET project entries
-            $.ajax({ type: 'GET', url: '/post/projects' })
+            $.ajax({ type: 'GET', url: '/post/projects/live' })
               .done(post => {
                 this.setState({ project: post });
                 // GET blog entries
-                $.ajax({ type: 'GET', url: '/post/journal' })
+                $.ajax({ type: 'GET', url: '/post/journal/live' })
                   .done(post => {
-                    console.log(post);
                     this.setState({ blog: post });
                     // GET skills
                     $.ajax({
                       type: 'GET',
                       url: '/skill/all',
                     }).done(skill => {
-                      console.log(skill);
                       this.setState({ skills: skill, isLoading: false });
                     });
                   })

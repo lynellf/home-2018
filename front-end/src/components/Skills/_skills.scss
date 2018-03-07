@@ -11,9 +11,15 @@
         justify-content: space-around;
         flex-wrap: wrap;
     }
-    // @include e('skill-container') {
-    //     padding-left: pem(16);
-    // }
+    @include e('skill-container') {
+        margin: pem(16);
+    }
+
+    @include e('title') {
+        margin: 20px 16px;
+        font-family: 'Hind',
+        sans-serif;
+    }
 
     @include e('name') {
         text-align: center;

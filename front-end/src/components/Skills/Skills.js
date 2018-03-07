@@ -11,7 +11,7 @@ export const Skills = props => {
   ));
   return (
     <div className="skills">
-      <h1>Skills</h1>
+      <h1 className="skills__title">Skills</h1>
       <div className="skills__list">{items}</div>
     </div>
   );

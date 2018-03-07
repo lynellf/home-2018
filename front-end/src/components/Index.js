@@ -32,9 +32,10 @@ export default class Index extends Component {
               .done(post => {
                 this.setState({ project: post });
                 // GET blog entries
-                $.ajax({ type: 'GET', url: '/post/journal/live' })
+                $.ajax({ type: 'GET', url: '/post/journal' })
                   .done(post => {
                     this.setState({ blog: post });
+                    console.log(this.state.blog);
                     // GET skills
                     $.ajax({
                       type: 'GET',

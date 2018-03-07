@@ -182,4 +182,4 @@ export const defaultClass = (array, classGroup, defaultName) => {
       });
       console.log(data);
       return data;
-  };
+};

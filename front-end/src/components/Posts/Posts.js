@@ -13,11 +13,8 @@ export default class Posts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      posts: filterPosts(
+      posts:
         grouper(createPost(this.props.posts, 'post')),
-        0,
-        'post'
-      ),
       pagination: 0,
     };
     this.showPost = this.showPost.bind(this);
@@ -25,6 +22,12 @@ export default class Posts extends Component {
     this.nextPost = this.nextPost.bind(this);
     this.previousPost = this.previousPost.bind(this);
     this.selectPage = this.selectPage.bind(this);
+  }
+
+  componentWillMount() {
+    this.setState({
+      posts: filterPosts(this.state.posts, 0, 'post')
+    })
   }
 
   // Click post name, list item expands, revealing article details

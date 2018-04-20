@@ -58,6 +58,7 @@ app.use('/nav', navigation);
 app.use('/post', post);
 app.use('/files', files);
 app.use('/skill', skill);
+app.use('/css', express.static('css'));
 app.use('/img', express.static('front-end/build/img'));
 app.use('/static', express.static('front-end/build/static'));
 app.use('/drop-styles', express.static('node_modules/bootstrap4c-dropzone'));

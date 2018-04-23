@@ -56,21 +56,28 @@
             display: block;
         }
     }
-
     @include e('pagination') {
         display: flex;
         justify-content: center;
         list-style: none;
     }
-
     @include e('list') {
         border-top: 0.5px solid rgb(117, 115, 115);
         border-bottom: 0.5px solid rgb(117, 115, 115);
         background: $seashell;
     }
-
     @include e('title') {
         padding-left: pem(16);
+    }
+}
+
+.blog-post {
+    @include e('title-container') {
+        @include m('active') {
+            display: flex;
+            justify-content: center;
+            margin-top: 46px;
+        }
     }
 }
 

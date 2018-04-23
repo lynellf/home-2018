@@ -1,0 +1,14 @@
+import {$ as jQuery} from 'jquery';
+import './js/dropzone';
+import PopperJs from 'popper.js';
+import 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'trumbowyg';
+import './js/config';
+import './js/edit-post';
+import './js/file-manager';
+import './js/ga-api';
+import './js/ga-dashboard';
+import './js/post-list';
+import './js/sections';
+import './js/skill-list';

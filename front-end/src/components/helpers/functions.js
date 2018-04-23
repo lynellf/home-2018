@@ -25,6 +25,9 @@ export const defaultClass = (array, classGroup, defaultName) => {
   },
   createPost = (data, postType) => {
     const newArray = [];
+    let blog = 'blog';
+    let project = 'project';
+    console.log(postType);
     data.forEach(item => {
       const post = {
         id: item._id,
@@ -180,6 +183,5 @@ export const defaultClass = (array, classGroup, defaultName) => {
       .fail(function(error) {
         console.log('An error occurred:', error);
       });
-      console.log(data);
       return data;
 };

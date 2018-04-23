@@ -36,6 +36,7 @@ export default class Article extends Component {
   }
 
   render() {
+    const date = new Date(this.props.date);
     const createMarkup = () => {
       const markup = this.props.post;
       return { __html: markup };
@@ -50,14 +51,29 @@ export default class Article extends Component {
     } else {
       containerClass = 'article__container';
     }
-  
+
 
     return (
       <div className={containerClass}>
-        <div
-          className="article__post"
-          dangerouslySetInnerHTML={createMarkup()}
-        />
+        {this.props.type === "Blog" ? (
+          <div>
+            <strong className="article__blog-date">Posted on {date.toISOString().slice(0,10)}</strong>
+            <div
+              className="article__blog-post"
+              dangerouslySetInnerHTML={createMarkup()}
+            />
+          </div>
+        ) : (
+
+            <div>
+              <strong className="article__date">Posted on {date.toISOString().slice(0,10)}</strong>
+              <div
+                className="article__post"
+                dangerouslySetInnerHTML={createMarkup()}
+              />
+            </div>
+
+          )}
         {imageStatus !== '' && skillStatus !== '' ? (
           <div className="article__details">
             {imageStatus !== '' ? (
